@@ -15,6 +15,19 @@ userCache.set("John", {
 console.log("plain set")
 console.log(userCache.get("John")) // should output hit: false
 
+// test get unexisted
+const user = userCache.get("Brandon");
+console.log("user")
+console.log(user)
+if (!user.hit) {
+    // get user from DB & update cache
+    const user = {
+        age: 28,
+        address: "there",
+    };
+    userCache.set("Brandon", user)
+}
+
 // test update when there's expired data
 const userCache2 = new cache<UserInfo>(1, 1000);
 userCache2.set("John", {
